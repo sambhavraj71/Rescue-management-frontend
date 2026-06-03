@@ -4,9 +4,8 @@
     "slug": "rescue-management-app",
     "version": "1.0.0",
     "orientation": "portrait",
-
     "userInterfaceStyle": "automatic",
-    "newArchEnabled": false,
+    "newArchEnabled": true,
     "icon": "./assets/images/icon.png",
     "splash": {
       "image": "./assets/images/splash-icon.png",
@@ -22,15 +21,12 @@
         "foregroundImage": "./assets/images/android-icon-foreground.png",
         "backgroundColor": "#E6F4FE"
       },
-      "edgeToEdgeEnabled": true,
-      "versionCode": 1,
-      "predictiveBackGestureEnabled": false
+      "versionCode": 1
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [],
-    "experiments": {},
     "extra": {
       "eas": {
         "projectId": "dd08c69c-ac94-4cce-9198-b1c88cdec1a4"
