@@ -4,9 +4,9 @@
     "slug": "rescue-management-app",
     "version": "1.0.0",
     "orientation": "portrait",
-    "scheme": "rescueapp",
+
     "userInterfaceStyle": "automatic",
-    "newArchEnabled": true,
+    "newArchEnabled": false,
     "icon": "./assets/images/icon.png",
     "splash": {
       "image": "./assets/images/splash-icon.png",
@@ -27,7 +27,6 @@
       "predictiveBackGestureEnabled": false
     },
     "web": {
-      "output": "static",
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [],

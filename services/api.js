@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const API = axios.create({
-  baseURL:"https://rescue-management-backend.onrender.com/api"
-});
+const baseURL = process.env.EXPO_PUBLIC_API_URL || "https://rescue-management-backend.onrender.com/api";
+
+const API = axios.create({ baseURL });
 
 export default API;
