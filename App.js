@@ -5,6 +5,8 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import API from "./services/api";
 
 import LoginScreen from "./screens/LoginScreen";
 import RegisterScreen from "./screens/RegisterScreen";
@@ -49,7 +51,7 @@ function MainTabs({ route }) {
       })}
     >
       <Tab.Screen name="Home" component={HomeScreen} initialParams={{ userId, userName }} />
-      <Tab.Screen name="Map" component={MapScreen} />
+      <Tab.Screen name="Map" component={MapScreen} initialParams={{ userId, userName, role }} />
       <Tab.Screen name="Alerts" component={AlertsScreen} initialParams={{ userId, userName }} />
       {isRescue && (
         <Tab.Screen name="Rescue" component={RescueScreen} initialParams={{ userId, userName }} />
@@ -102,6 +104,7 @@ export default function App() {
             role: role[1] || "user",
           });
           setInitialRoute("Main");
+          registerPushToken(userId[1]);
         } else {
           setInitialRoute("Login");
         }
@@ -113,6 +116,10 @@ export default function App() {
     checkAuth();
   }, []);
 
+  const registerPushToken = async (_userId) => {
+    // Push notifications via Expo Go SDK 53+ supported nahi — in-app socket notifications use ho rahi hain
+  };
+
   if (!initialRoute) {
     return (
       <View style={{ flex: 1, backgroundColor: "#0f172a", justifyContent: "center", alignItems: "center" }}>
@@ -122,8 +129,9 @@ export default function App() {
   }
 
   return (
-    <ErrorBoundary>
-      <NavigationContainer>
+    <SafeAreaProvider>
+      <ErrorBoundary>
+        <NavigationContainer>
         <Stack.Navigator
           initialRouteName={initialRoute}
           screenOptions={{ headerShown: false }}
@@ -137,7 +145,8 @@ export default function App() {
           />
           <Stack.Screen name="SOS" component={SOSScreen} />
         </Stack.Navigator>
-      </NavigationContainer>
-    </ErrorBoundary>
+        </NavigationContainer>
+      </ErrorBoundary>
+    </SafeAreaProvider>
   );
 }
